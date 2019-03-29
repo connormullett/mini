@@ -16,7 +16,11 @@ Edit Mode
 '''
 
 def main(stdscr):
-    pass
+    curses.noecho()
+    curses.cbreak()
+    stdscr.keypad(True)
+    stdscr.clear()
+
 
 def teardown(stdscr):
     curses.nocbreak()
@@ -31,8 +35,12 @@ def mini(f):
     stdscr = curses.initscr()
     try:
         main(stdscr)
-    except Exception as e:
+    except Exception:
         traceback.print_exc()
     finally:
         teardown(stdscr)
+
+
+if __name__ == '__main__':
+    mini()
 
