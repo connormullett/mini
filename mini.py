@@ -1,6 +1,7 @@
 
 import click
 import curses
+import traceback
 
 from curses import wrapper
 
@@ -31,7 +32,7 @@ def mini(f):
     try:
         main(stdscr)
     except Exception as e:
-        print(e)
+        traceback.print_exc()
     finally:
         teardown(stdscr)
 
