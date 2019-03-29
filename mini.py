@@ -14,12 +14,24 @@ Append mode
 Edit Mode
 '''
 
-def main():
-    stdscr = curses.initscr()
+def main(stdscr):
+    pass
+
+def teardown(stdscr):
+    curses.nocbreak()
+    stdscr.keypad(False)
+    curses.echo()
     curses.endwin()
+
 
 @click.command()
 @click.argument('f')
 def mini(f):
-    main()
+    stdscr = curses.initscr()
+    try:
+        main(stdscr)
+    except Exception as e:
+        print(e)
+    finally:
+        teardown(stdscr)
 
