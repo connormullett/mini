@@ -1,0 +1,3 @@
+[console_scripts]
+mini = mini:mini
+

@@ -1,8 +1,13 @@
 
-from distutils.core import setup
+from setuptools import setup
 
-setup = {
-        name='mini',
-        version='0.0.1',
+setup(
+    name='mini-notes',
+    version='0.0.1',
+    entry_points={
+        'console_scripts': [
+            'mini=mini:mini'
+        ]
     }
+)
 
