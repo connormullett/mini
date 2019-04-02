@@ -15,11 +15,30 @@ Append mode
 Edit Mode
 '''
 
-def main(stdscr):
+
+def backspace(stdscr, x, y):
+    stdscr.delch(x, y - 1)
+    stdscr.move(x, y - 1)
+
+
+def start(stdscr):
     curses.noecho()
     curses.cbreak()
     stdscr.keypad(True)
     stdscr.clear()
+
+
+def main(stdscr):
+    while True:
+        c = stdscr.getch()
+        if c == ord('q'):
+            break
+        elif c == 127:
+            x, y = stdscr.getyx()
+            backspace(stdscr, x, y)
+        else:
+            stdscr.addch(c)
+    curses.endwin()
 
 
 def teardown(stdscr):
@@ -34,6 +53,7 @@ def teardown(stdscr):
 def mini(f):
     stdscr = curses.initscr()
     try:
+        start(stdscr)
         main(stdscr)
     except Exception:
         traceback.print_exc()
